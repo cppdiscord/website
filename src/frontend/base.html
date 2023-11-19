@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>C++ Discord</title>
+        <link rel="icon" type="image/x-icon" href="<?origin>/assets/logo.png">
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                background: #181A1B;
+            }
+
+            /* navbar */
+            header {
+                font-size: 14px;
+                background: #1b2033;
+                display: flex;
+                align-items: center;
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                flex-grow: 1;
+            }
+
+            li {
+                float: left;
+            }
+
+            li:last-child {
+                float: right;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            li a:hover {
+                background: #6d6d6d86;
+            }
+
+            .logo {
+                margin-left: 30px;
+                height: 30px;
+            }
+
+            /* content */
+            .content {
+                float: left;
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
+            .content h1, h2, h3, h4 {
+                color: rgb(201, 196, 189);
+                line-height: 80px;
+            }
+
+            .content h1 {
+                line-height: 80px;
+            }
+
+            .content h2, h3, h4 {
+                line-height: 60px;
+            }
+
+            .content p {
+                color:rgb(200, 196, 189);
+            }
+
+            .content pre {
+                color: #3f7e4d;
+            }
+        </style>
+    </head>    
+    <body>
+        <header>
+            <img src="<?origin>/assets/logo.png" alt="cppdiscord" class="logo">
+            <ul>
+                <li><a class="active" href="">Home</a></li>
+                <li><a href="">Resources</a></li>
+                <li><a href="https://github.com/cppdiscord" target="_blank">Github</a></li>
+                <li><a href="https://discord.gg/cpp" target="_blank">Join on Discord</a></li>
+            </ul>
+        </header>
+
+        <div class="content">
+            <?markdown>
+        </div>
+    </body>
+</html>
