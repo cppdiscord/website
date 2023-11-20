@@ -14,43 +14,46 @@ int main(int argc, char *argv[])
 
     webServer.onRequest([&webServer](WebServer::Request &req, WebServer::Response &res)
     {
-        if (req.route == "/")
+        if (req.method == "GET")
         {
-            res.redirect("https://discord.gg/cpp");
-        }
-        else if (req.route == "/posting-guidelines")
-        {
-            res.redirect("/resources/posting-guidelines");
-        }
-        else if (req.route.startsWith("/assets") && req.route.endsWith(".png"))
-        {
-            QFile file(Utils::getFrontendPath() + req.route);
-            res.render(file, WebServer::Locals(), webServer.StatusCodes::OK, "image/png");
-        }
-        else if (req.route.startsWith("/resources/"))
-        {
-            QFile base(Utils::getFrontendPath() + "/base.html");
-            QString md = Utils::getFrontendPath() + req.route + ".md";
-
-            QString mdHtml = Utils::markdownToHtml(md);
-            if (md.contains("..") || mdHtml == "") // validate path
+            if (req.route == "/")
             {
-                qDebug() << "Error reading markdownfile";
-                QByteArray responseContent = "404 file not found";
-                res.send(responseContent, webServer.StatusCodes::NOT_FOUND, "text/plain");
-                return;
+                res.redirect("https://discord.gg/cpp");
             }
+            else if (req.route == "/posting-guidelines")
+            {
+                res.redirect("/resources/posting-guidelines");
+            }
+            else if (req.route.startsWith("/assets") && req.route.endsWith(".png"))
+            {
+                QFile file(Utils::getFrontendPath() + req.route);
+                res.render(file, WebServer::Locals(), webServer.StatusCodes::OK, "image/png");
+            }
+            else if (req.route.startsWith("/resources/"))
+            {
+                QFile base(Utils::getFrontendPath() + "/base.html");
+                QString md = Utils::getFrontendPath() + req.route + ".md";
 
-            WebServer::Locals locals; 
-            locals.add("origin", Utils::getOrigin());
-            locals.add("markdown", mdHtml);
+                QString mdHtml = Utils::markdownToHtml(md);
+                if (md.contains("..") || mdHtml == "") // validate path
+                {
+                    qDebug() << "Error reading markdownfile";
+                    QByteArray responseContent = "404 file not found";
+                    res.send(responseContent, webServer.StatusCodes::NOT_FOUND, "text/plain");
+                    return;
+                }
 
-            res.render(base, locals);
-        }
-        else
-        {
-            QByteArray responseContent = "404";
-            res.send(responseContent, webServer.StatusCodes::NOT_FOUND, "text/plain");
+                WebServer::Locals locals; 
+                locals.add("origin", Utils::getOrigin());
+                locals.add("markdown", mdHtml);
+
+                res.render(base, locals);
+            }
+            else
+            {
+                QByteArray responseContent = "404";
+                res.send(responseContent, webServer.StatusCodes::NOT_FOUND, "text/plain");
+            }
         }
     });
     
