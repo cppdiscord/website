@@ -1,6 +1,6 @@
 # C++ Discord Website
 
-![Discord](https://img.shields.io/discord/1130464154344493166)
+[![Discord](https://img.shields.io/discord/1130464154344493166)](https://discord.gg/cpp)
 
 ## Setup
 #### 1. Clone this repository
