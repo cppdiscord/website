@@ -29,6 +29,16 @@ int main(int argc, char *argv[])
                 QFile file(Utils::getFrontendPath() + req.route);
                 res.render(file, WebServer::Locals(), webServer.StatusCodes::OK, "image/png");
             }
+            else if (req.route.startsWith("/assets") && req.route.endsWith(".css"))
+            {
+                QFile file(Utils::getFrontendPath() + req.route);
+                res.render(file, WebServer::Locals(), webServer.StatusCodes::OK, "text/css");
+            }
+            else if (req.route.startsWith("/assets") && req.route.endsWith(".js"))
+            {
+                QFile file(Utils::getFrontendPath() + req.route);
+                res.render(file, WebServer::Locals(), webServer.StatusCodes::OK, "application/javascript");
+            }
             else if (req.route.startsWith("/resources/"))
             {
                 QFile base(Utils::getFrontendPath() + "/base.html");

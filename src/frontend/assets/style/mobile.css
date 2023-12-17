@@ -1,0 +1,31 @@
+@media screen and (max-width: 600px) {
+    header {
+        height: 80px;
+    }
+    header ul {
+        display: none;
+    }
+
+    header .fa-bars {
+        display: inline-block;
+        position: sticky;
+        left: 90%;
+        color: white;
+    }
+
+    .logo {
+        margin-left: 30px;
+        height: 60px;
+    }
+
+    #mobile-nav-overlay {
+        text-align: center;
+    }
+
+    #mobile-nav-overlay ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+}
